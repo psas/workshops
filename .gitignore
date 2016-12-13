@@ -1,0 +1,11 @@
+*.aux
+*.log
+*.swp
+*.out
+*.nav
+*.blg
+*.bbl
+*.toc
+*.vrb
+*.bak
+*.snm

@@ -1,0 +1,451 @@
+\documentclass[xcolor=dvipsnames]{article}
+	
+%	
+%	
+	
+\usepackage{graphicx}
+\usepackage{calc}
+\usepackage{amsmath, amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{fancyvrb}
+	% redefine the 'verbatim' environment to act like the 'Verbatim' environment 
+	% from the fancyvrb package, with the specified options
+	\RecustomVerbatimEnvironment{Verbatim}{Verbatim}{frame=single, numbers=left, numbersep=1ex}
+	\DefineVerbatimEnvironment{verbnest}{Verbatim}{frame=single, numbers=left, numbersep=1ex, gobble=2}
+
+\newcommand{\id}{\mathrm{d}}
+\newcommand{\fd}[2]{\frac{\id #1}{\id #2}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\lag}{\mathcal{L}}
+
+\title{An Intro to \LaTeX{}}
+\author{Portland State Aerospace Society\\\small Joe Shields}
+\date{\today}
+
+\begin{document}
+
+	% \subsection{An Intro to \LaTeX{}}
+	\maketitle
+
+
+
+	\section{What is \LaTeX{}}
+	\subsection{Things \LaTeX{} is:}
+	\begin{itemize}
+		\item A document preparation system
+		\item A markup language
+		\item Old
+		\item Widely used in academia
+		\item Technically Turing complete
+		\item A way to process, standardize, and automate large, complicated documents
+		\item A way to make professional-quality documents (particularly math)
+	\end{itemize}
+
+
+
+	\subsection{Things \LaTeX{} isn't:}
+	\begin{itemize}
+		\item A replacement to word processors
+		\item A replacement to hand-written math
+		\item A sane programming language to use
+		\item Something you can easily emulate with other tools
+	\end{itemize}
+
+
+
+	\section{The Basics}
+	\subsection{A Minimal Document}
+\begin{Verbatim}
+\documentclass{article}
+\begin{document}
+Hello, world!
+\end{document}
+\end{Verbatim}
+Hello, world!
+
+
+
+	\subsection{Text Syntax}
+\begin{Verbatim}
+\documentclass{article}
+\begin{document}
+Hello, ``world''!
+This is still part of the first paragraph.
+
+Blank lines signal new paragraphs.
+Spaces    only     \emph{separate}    words.
+% Everything after a '%' is omitted.
+\end{document}
+\end{Verbatim}
+
+Hello, ``world''!
+This is still part of the first paragraph.
+
+Blank lines signal new paragraphs.
+Spaces    only     \emph{separate}    words.
+% Everything after a % is omitted.
+
+
+
+	\subsection{Basic Elements}
+\begin{Verbatim}
+% this section is the preamble:
+\documentclass{article}
+\usepackage{amsmath} % a package
+
+% this section is the body of the document:
+\begin{document} 
+The quick brown fox jumps over
+the lazy dog. % some text
+
+\LaTeX % a control sequence
+
+\begin{equation} % an environment
+	1+1=2
+\end{equation}
+
+\end{document}
+\end{Verbatim}
+
+
+
+	\subsection{Math}
+\begin{Verbatim}
+\[\frac{2}{2}=1\]
+\begin{equation}
+	a^2 + b^2 = c^2
+\end{equation}
+Remember that $1 \neq 0$.
+\end{Verbatim}
+\[\frac{2}{2}=1\]
+\begin{equation}
+	a^2 + b^2 = c^2
+\end{equation}
+Remember that $1 \neq 0$.
+
+
+
+	\subsection{Structure}
+\begin{Verbatim}
+\section{Higher Level}\label{sec:high}
+\subsection{Lower Level}
+\section*{Labels}
+This section doesn't have one.
+\subsection{References}
+See section \ref{sec:high}.
+\end{Verbatim}
+When adding or changing your labels, you must compile [at least] twice, because the counters can depend on how the document is rendered and vice versa.
+
+
+
+	\subsection{Titles}
+\begin{Verbatim}
+\documentclass{article}
+
+\title{Methods of Grain Alchohol Production}
+\author{Billy Bob}
+\date{\today}
+
+\begin{document}
+\maketitle
+...
+\end{document}
+\end{Verbatim}
+
+
+
+	\subsection{Table of Contents}
+\begin{Verbatim}
+\tableofcontents
+\end{Verbatim}
+\tableofcontents
+
+
+
+	\section{Useful Environments}
+	\subsection{Useful Environments: lists}
+\begin{Verbatim}
+\begin{itemize}
+	\item paper
+	\item water
+	\item fruit
+	\begin{itemize}
+		\item bananas
+		\item oranges
+	\end{itemize}
+\end{itemize}
+\end{Verbatim}
+\begin{itemize}
+	\item paper
+	\item water
+	\item fruit
+	\begin{itemize}
+		\item bananas
+		\item oranges
+	\end{itemize}
+\end{itemize}
+
+
+
+	\subsection{Useful Environments: align}
+	This requires the \texttt{amsmath} package.
+\begin{Verbatim}
+\begin{align}
+	0 &= \sum_i F_i \\
+	0 &= F_{gravity} + F_1 + F_2
+\end{align}
+\end{Verbatim}
+\begin{align}
+	0 &= \sum_i F_i \\
+	0 &= F_{gravity} + F_1 + F_2
+\end{align}
+
+
+
+	\subsection{Useful Environments: verbatim}
+\begin{verbnest}
+% \begin{verbatim}
+% \documentclass{article}
+% \begin{document}
+% Hello, world!
+% \end{document}
+% \end{verbatim}
+% Here is some code: \verb+print('Hello, world!')+.
+\end{verbnest}
+\begin{verbatim}
+\documentclass{article}
+\begin{document}
+Hello, world!
+\end{document}
+\end{verbatim}
+Here is some code: \verb+print('Hello, world!')+.
+
+
+
+	\section{Packages}
+	\subsection{How to Use Packages}
+\begin{Verbatim}
+\documentclass{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage[letterpaper, margin=1in]{geometry}
+
+\begin{document}
+...
+\end{document}
+\end{Verbatim}
+
+
+
+	\subsection{Useful Packages}
+	% \texttt{amsmath\\ amssymb\\ amsfonts}
+	\begin{tabular}{ll}
+		\parbox{8em}{\texttt{amsmath\\ amssymb\\ amsfonts\\}}	&	really useful stuff for math	\\
+		\texttt{graphicx}	&	inserting images (including \texttt{PDF}s)	\\
+		\texttt{geometry}	&	changing the layout of the page	\\
+		\texttt{hyperref}	&	clickable inter- and extra-document links	\\
+		\texttt{lipsum	}	&	filler text for testing document formatting	\\
+		\texttt{nicefrac}	&	inline fractions	\\
+		\texttt{siunitx	}	&	easy formatting of units	\\
+		\texttt{fancyvrb}	&	customized \texttt{verbatim} environments	\\
+		\texttt{calc}		&	allows multiplication of widths	\\
+	\end{tabular}
+	\vfill
+	Using \verb+\documentclass[twocolumn]{article}+ is also nice.
+
+
+
+	\section{Floats}
+	\subsection{Figures}
+	Typically, it's best to set \verb+[width=\textwidth]+. 
+\begin{Verbatim}
+\begin{figure}
+	\centering
+	\includegraphics[height=5em]{doge.jpg}
+	\caption{A figure.}
+	\label{fig:doge}
+\end{figure}
+\end{Verbatim}
+\begin{figure}
+	\centering
+	\includegraphics[height=5em]{doge.jpg}
+	\caption{A figure.}
+	\label{fig:doge}
+\end{figure}
+
+
+
+	\subsection{Tables}
+\begin{Verbatim}
+\begin{table}
+	\centering
+	\caption{A table.}
+	\label{tab:eng}
+	\begin{tabular}{r|l}
+		Engineering & Awesomeness \\
+		\hline
+		Mechanical & 9001 \\
+		Electrical & 100 \\
+		Software & 10 \\
+		Civil & -1 \\
+	\end{tabular}
+\end{table}
+\end{Verbatim}
+
+
+
+\begin{table}
+	\centering
+	\caption{A table.}
+	\label{tab:eng}
+	\begin{tabular}{r|l}
+		Engineering & Awesomeness \\
+		\hline
+		Mechanical & 9001 \\
+		Electrical & 100 \\
+		Software & 10 \\
+		Civil & -1 \\
+	\end{tabular}
+\end{table}
+
+
+
+	\subsection{Notes on Floats}
+	Floats don't usually stay where you put them. \LaTeX puts them in the spots of ``least badness.''
+
+	You can use \verb+\begin{float}[t]+ to force the float to the top of the page. \verb+[h]+ and \verb+[b]+ put it roughly where it is in the source and at the bottom of the page, respectively.
+
+
+
+	\section{Bibliographies}
+	\subsection{Bibliographies and Citations}
+\begin{Verbatim}
+It has been shown that you can put really awesome 
+stuff on a rocket \cite{schmidt2015development}.
+\bibliographystyle{ieeetr}
+\bibliography{psas.bib}
+\end{Verbatim}
+It has been shown that you can put really awesome 
+stuff on a rocket \cite{schmidt2015development}.
+\bibliographystyle{ieeetr}
+\bibliography{psas.bib}
+
+
+
+	\subsection{Databases}
+	This the \TeX info format. Google Scholar provides citations in this format, which makes creating bibliographies \emph{much easier!}
+\begin{Verbatim}[fontsize=\tiny]
+@inproceedings{schmidt2015development,
+	title={Development of a Low-Cost, Open-Hardware 
+		Attitude Control System for High-Powered Rockets},
+	author={Schmidt, Erin and Louke, Jeremy and 
+		Arnell, Kenneth and Hickman, Jeffrey and Wiles, Brentley},
+	booktitle={AIAA SPACE 2015 Conference and Exposition},
+	pages={4623},
+	year={2015}
+}
+
+@incollection{shields2016design,
+	title={Design and Manufacture of an Open-Hardware 
+		University Rocket Airframe using Carbon Fiber},
+	author={Shields, Joseph P and Elwood, Leslie},
+	booktitle={AIAA SPACE 2016},
+	pages={5365},
+	year={2016}
+}
+\end{Verbatim}
+
+
+
+	\subsection{Compiling with Bibliographies}
+	Bibliographies add another layer of linking to your labels and references. You'll have to run an extra command in between renders.
+\begin{Verbatim}
+$ pdflatex hello_world
+$ bibtex hello_world
+$ pdflatex hello_world
+\end{Verbatim}
+
+
+
+	\subsection{Notes on Bibliographies}
+	There's also the \texttt{biblatex} package, which is more powerful than the default \texttt{bibtex}. Note, however, that it uses a different syntax!
+
+
+
+	\section{Miscellaneous}
+	\subsection{Misc: special document classes}
+	AIAA provides their own documentclass (as many other journals do) which helps create documents which conform to their standards. They also provide sample documents which demonstrate how to use this documentclass. 
+
+	\url{https://www.aiaa.org/WorkArea/DownloadAsset.aspx?id=4199}
+
+
+
+	\subsection{Misc: custom control sequences}
+	You can make shorthand commands for useful things.
+\begin{Verbatim}[fontsize=\footnotesize]
+\newcommand{\id}{ \mathrm{d} }
+\newcommand{\fd}[2]{ \frac{\id #1}{\id #2} }
+\newcommand{\pd}[2]{ \frac{\partial #1} {\partial #2} }
+\newcommand{\lag}{ \mathcal{L} }
+
+\begin{align*}
+\frac{\partial \mathcal{L}}{\partial q} &= 
+	\frac{\mathrm{d}}{\mathrm{d}t}
+	\frac{\partial \mathcal{L}}{\partial \dot q} \\
+
+\pd{\lag}{q} &= \fd{}{t}\pd{\lag}{\dot q}
+\end{align*}
+\end{Verbatim}
+\begin{align*}
+\frac{\partial \mathcal{L}}{\partial q} &= \frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial \mathcal{L}}{\partial \dot q} \\
+\pd{\lag}{q} &= \fd{}{t}\pd{\lag}{\dot q}
+\end{align*}
+
+
+
+	\subsection{Misc: Fudgey Stuff}
+\begin{Verbatim}
+\begin{minipage}{\textwidth}
+	% This acts like a self-contained page
+	% of the specified width.
+\end{minipage}
+\vfill
+\vspace{2em}
+% give a badness rating to not breaking the page:
+\pagebreak[1000]
+\end{Verbatim}
+There are a ton of different preset whitespaces too. Look them up if you need them.
+
+
+
+	\subsection{Lengths}
+	\begin{tabular}{r|l}
+	em & width of a captial M \\
+	ex & width of a lower-case x \\
+	in & an inch \\
+	cm & a centimeter \\
+	\verb+\textwidth+ & current text width \\
+	\verb+\linewidth+ & page's line width
+	\end{tabular}
+
+
+
+	\section{Resources}
+	\subsection{Resources}
+	\begin{itemize}
+		\item \href{https://en.wikibooks.org/wiki/LaTeX}{\LaTeX wikibook}:
+			\url{https://en.wikibooks.org/wiki/LaTeX}\\
+			Pretty comprehensive descriptions of everything you will \emph{actually need and use.}
+		\item \href{http://detexify.kirelabs.org/classify.html}{detexify}:
+			\url{http://detexify.kirelabs.org/classify.html} \\
+			Translates handwritten symbols into \LaTeX control sequences, and tells you which package is needed.
+		\item \href{http://tex.stackexchange.com/}{\TeX stack exchange}:
+			\url{http://tex.stackexchange.com/} \\
+			A place where virtually every problem you will have with \LaTeX has already been answered.
+	\end{itemize}
+
+
+\end{document}
